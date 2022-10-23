@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 from .code.searcher import find_group_url
 from .code.parser import parse
 
 
 def index(request):
-    return HttpResponse('<h1>Стартовая страница</h1>')
+    return render(request, 'main/index.html')
 
 
 def timetable(request):
@@ -15,8 +14,8 @@ def timetable(request):
 
 
 def login(request):
-    return HttpResponse('<h1>Страница с входом</h1>')
+    return render(request, 'main/login.html')
 
 
 def register(request):
-    return HttpResponse('<h1>Страница с регистрацией</h1>')
+    return render(request, 'main/register.html')
