@@ -8,6 +8,13 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <header>
+        <ul>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'timetable' %}">Расписание</a></li>
+            <li><a href="{% url 'login' %}">Вход</a> | <a href="{% url 'register' %}">Регистрация</a></li>
+        </ul>
+    </header>
     {% block content %}{% endblock %}
 </body>
 </html>
