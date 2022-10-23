@@ -15,12 +15,12 @@
         {% for lesson in day.table %}
             <tr>
                 <td rowspan="2">
-                    <div class="pair number">{{ lesson.pair.number }}</div>
-                    <div class="pair time">{{ lesson.pair.time }}</div>
+                    <div class="pair_number">{{ lesson.pair.number }}</div>
+                    <div class="pair_time">{{ lesson.pair.time }}</div>
                 </td>
                 <td>
-                    <div class="pair type" style="display: inline">{{ lesson.course.type }}</div>
-                    <div class="course name" style="display: inline">{{ lesson.course.name }}</div>
+                    <div class="pair_type" style="display: inline">{{ lesson.course.type }}</div>
+                    <div class="course_name" style="display: inline">{{ lesson.course.name }}</div>
                 </td>
             </tr>
             <tr>
