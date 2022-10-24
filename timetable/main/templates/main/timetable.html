@@ -8,7 +8,10 @@
 <div class="timetable" style="vertical-align:top;">
         {% for week in table %}
         <table style="display:inline-table;">
-        {% for day in week %}
+            <tr>
+                <th class='week_title' colspan="2">Неделя {{ week.number }}</th>
+            </tr>
+        {% for day in week.table %}
             <tr>
                 <th colspan="2">{{ day.day }}</th>
             </tr>

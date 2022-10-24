@@ -46,9 +46,9 @@ def parse_day(day: list):
 
 def parse_timetable(timetable: list):  # list of two weeks
     for i in range(2):
-        timetable[i] = [tag.contents for tag in timetable[i].contents[1::2]]
-        for j in range(len(timetable[i])):
-            timetable[i][j] = parse_day(timetable[i][j])
+        timetable[i]['table'] = [tag.contents for tag in timetable[i]['table'].contents[1::2]]
+        for j in range(len(timetable[i]['table'])):
+            timetable[i]['table'][j] = parse_day(timetable[i]['table'][j])
     return timetable
 
 
@@ -56,5 +56,8 @@ def parse(table_url: str):
     request = requests.get(table_url)
     table_soup = bs(request.text, 'html.parser')
     weeks_set = table_soup.find_all('div', class_='timetable__grid_md')
-    two_weeks = [weeks_set[0], weeks_set[1]]
+    two_weeks = [
+        {'table': weeks_set[0], 'number': 1},
+        {'table': weeks_set[1], 'number': 2}
+    ]
     return parse_timetable(two_weeks)
