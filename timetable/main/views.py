@@ -1,11 +1,12 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 
 from .code.searcher import find_group_url
 from .code.parser import parse
 from .utils import DataMixin
+from .forms import *
 
 
 class IndexView(DataMixin, TemplateView):
@@ -38,8 +39,10 @@ class LoginView(DataMixin, TemplateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class RegisterView(DataMixin, TemplateView):
+class RegisterView(DataMixin, CreateView):
+    form_class = RegisterUserForm
     template_name = 'main/register.html'
+    success_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
