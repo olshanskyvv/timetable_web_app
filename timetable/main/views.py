@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
@@ -16,8 +17,9 @@ class IndexView(DataMixin, TemplateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class TimetableView(DataMixin, TemplateView):
+class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
     template_name = 'main/timetable.html'
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
