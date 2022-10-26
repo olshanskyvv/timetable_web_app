@@ -82,3 +82,15 @@ class RegisterView(DataMixin, CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('timetable')
+
+
+class ProfileView(LoginRequiredMixin, DataMixin, TemplateView):
+    template_name = 'main/profile.html'
+    login_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.request.user
+        c_def = self.get_user_context(title='Профиль', profile=profile)
+        return dict(list(context.items()) + list(c_def.items()))
+
