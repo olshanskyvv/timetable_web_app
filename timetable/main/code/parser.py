@@ -2,6 +2,8 @@ import re
 import requests
 from bs4 import BeautifulSoup as bs
 
+from . import exceptions
+
 
 def parse_info(info: list):
     for i in range(len(info)):
@@ -54,6 +56,8 @@ def parse_timetable(timetable: list):  # list of two weeks
 
 def parse(table_url: str):
     request = requests.get(table_url)
+    if request.status_code != 200:
+        raise exceptions.ConnectionFault('Не удалось выполнить запрос на сайт с расписанием. Повторите позже.')
     table_soup = bs(request.text, 'html.parser')
     weeks_set = table_soup.find_all('div', class_='timetable__grid_md')
     two_weeks = [

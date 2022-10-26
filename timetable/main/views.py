@@ -9,6 +9,7 @@ from .code.searcher import find_group_url
 from .code.parser import parse
 from .utils import DataMixin
 from .forms import *
+from .code.exceptions import *
 
 
 class IndexView(DataMixin, TemplateView):
@@ -26,9 +27,26 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        table_url = find_group_url('УИС-212')
-        table = parse(table_url)
-        c_def = self.get_user_context(title='Расписание', table=table)
+        error_type = None
+        error_text = None
+        table = None
+        try:
+            table_url = find_group_url(self.request.user.group)
+            table = parse(table_url)
+        except ConnectionError as c:
+            print(c)
+            error_type = 'ConnectionFault'
+            error_text = str(c)
+        except GroupNotFound as nf:
+            print(nf)
+            error_type = 'GroupNotFound'
+            error_text = str(nf)
+        except Exception as e:
+            print(e)
+            error_type = 'error'
+            error_text = str(e)
+
+        c_def = self.get_user_context(title='Расписание', table=table, error_type=error_type, error_text=error_text)
         return dict(list(context.items()) + list(c_def.items()))
 
 

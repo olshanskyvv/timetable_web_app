@@ -3,7 +3,6 @@ import requests
 
 from . import exceptions
 
-
 MAIN_URL = "https://rut-miit.ru"
 URL_TEMPLATE = "https://rut-miit.ru/timetable"
 group = "УИС-212"
@@ -20,6 +19,6 @@ def find_group_url(group_number: str):
         if group_number.upper() in ref.text:
             needed_table_url = MAIN_URL + ref['href']
             break
-    if not needed_table_url:
+    if needed_table_url == MAIN_URL + '/':
         raise exceptions.GroupNotFound('Не удалось найти группу. Проверьте корректность записи.')
     return needed_table_url

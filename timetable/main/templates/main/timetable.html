@@ -1,6 +1,10 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+
+{% if error_type %}
+<div class="error">{{ error_text }}</div>
+{% else %}
 <div class="timetable" style="vertical-align:top;">
         {% for week in table %}
         <table style="display:inline-table;">
@@ -35,4 +39,5 @@
         </table>
         {% endfor %}
     </div>
+{% endif %}
 {% endblock %}
