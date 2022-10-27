@@ -58,7 +58,7 @@ def parse(table_url: str):
     request = requests.get(table_url)
     if request.status_code != 200:
         raise exceptions.ConnectionFault('Не удалось выполнить запрос на сайт с расписанием. Повторите позже.')
-    table_soup = bs(request.text, 'html.parser')
+    table_soup = bs(request.text, 'lxml')
     weeks_set = table_soup.find_all('div', class_='timetable__grid_md')
     two_weeks = [
         {'table': weeks_set[0], 'number': 1},
