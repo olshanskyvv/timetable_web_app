@@ -1,0 +1,55 @@
+.last{
+
+}
+
+body{
+
+}
+
+table{
+    border: 1px solid gray;
+}
+
+tr{
+
+}
+
+th{
+    border: 1px solid grey;
+}
+
+td{
+
+}
+
+.timetable{
+
+}
+
+.week_title{
+
+}
+
+.pair_number{
+
+}
+
+.pair_time{
+    display: inline
+}
+
+.pair_type{
+    display: inline
+}
+
+.course_name{
+
+}
+
+.info{
+
+}
+
+.error{
+
+}

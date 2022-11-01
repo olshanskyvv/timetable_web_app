@@ -4,9 +4,11 @@
 <h1>{{ title }}</h1>
 
 <div class="profile">
-    <p><span class="title">Имя: </span>{{ profile.first_name }}</p>
-    <p><span class="title">Фамилия: </span>{{ profile.last_name }}</p>
-    <p><span class="title">Email: </span>{{ profile.email }}</p>
-    <p><span class="title">Номер группы: </span>{{ profile.group }}</p>
+    {% for p in profile %}
+    <p>
+        <span class="title">{{ p.title }}: </span>{{ p.field }}
+        <button type="button">Изменить</button>
+    </p>
+    {% endfor %}
 </div>
 {% endblock %}
