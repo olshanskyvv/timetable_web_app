@@ -21,6 +21,15 @@ class IndexView(DataMixin, TemplateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
+class AboutView(DataMixin, TemplateView):
+    template_name = 'main/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='О нас')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
     template_name = 'main/timetable.html'
     login_url = reverse_lazy('login')
