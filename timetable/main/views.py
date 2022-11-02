@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView
 
 from .code.searcher import find_group_url
 from .code.parser import parse
@@ -86,11 +86,36 @@ class RegisterView(DataMixin, CreateView):
 
 class ProfileView(LoginRequiredMixin, DataMixin, TemplateView):
     template_name = 'main/profile.html'
-    login_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        profile = [
+            {'title': 'Имя', 'field': user.first_name, },
+            {'title': 'Фамилия', 'field': user.last_name},
+            {'title': 'Email', 'field': user.email},
+            {'title': 'Номер группы', 'field': user.group},
+        ]
+        c_def = self.get_user_context(title='Профиль', profile=profile)
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdateUserView(LoginRequiredMixin, DataMixin, UpdateView):
+    form_class = UpdateUserForm
+    context_object_name = 'user'
+    model = User
+    template_name = 'main/profile_edit.html'
+    success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = self.request.user
-        c_def = self.get_user_context(title='Профиль', profile=profile)
+        c_def = self.get_user_context(title='Редактирование', profile=profile)
         return dict(list(context.items()) + list(c_def.items()))
 
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        form.save()
+        return redirect(reverse_lazy('profile'))

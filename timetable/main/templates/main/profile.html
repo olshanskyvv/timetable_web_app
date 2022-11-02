@@ -7,8 +7,9 @@
     {% for p in profile %}
     <p>
         <span class="title">{{ p.title }}: </span>{{ p.field }}
-        <button type="button">Изменить</button>
     </p>
     {% endfor %}
+
+    <a href="{% url 'profile_edit' %}"><button type="button">Изменить</button></a>
 </div>
 {% endblock %}
