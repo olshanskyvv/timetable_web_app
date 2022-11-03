@@ -5,8 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView
 
-from .code.searcher import find_group_url
-from .code.parser import parse
+from .code.getter import get_timetable
 from .utils import DataMixin
 from .forms import *
 from .code.exceptions import *
@@ -31,8 +30,7 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
         error_text = None
         table = None
         try:
-            table_url = find_group_url(self.request.user.group)
-            table = parse(table_url)
+            table = get_timetable(self.request.user)
         except ConnectionError as c:
             print(c)
             error_type = 'ConnectionFault'
