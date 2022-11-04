@@ -11,6 +11,5 @@ def get_timetable(user: User):
     if timetable:
         return get_timetable_from_db(group)
     else:
-        timetable = parse(find_group_url(group))
-        add_timetable_to_db(timetable, group)
-        return timetable
+        add_timetable_to_db(parse(find_group_url(group)), group)
+        return get_timetable_from_db(group)
