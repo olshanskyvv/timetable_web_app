@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
 
 from .code.getter import get_timetable
+from .code.db_filler import add_timetable_to_db
 from .utils import DataMixin
 from .forms import *
 from .code.exceptions import *
@@ -46,6 +47,12 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
 
         c_def = self.get_user_context(title='Расписание', table=table, error_type=error_type, error_text=error_text)
         return dict(list(context.items()) + list(c_def.items()))
+
+
+def update_timetable(request):
+    user_group = request.user.group
+    Timetable.objects.filter(group=user_group).delete()
+    return redirect('timetable')
 
 
 class LessonView(LoginRequiredMixin, DataMixin, DetailView, UpdateView):

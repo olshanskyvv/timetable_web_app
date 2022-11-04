@@ -8,8 +8,7 @@ from ..models import *
 def get_timetable(user: User):
     group = user.group
     timetable = Timetable.objects.filter(group=group)
-    if timetable:
-        return get_timetable_from_db(group)
-    else:
+    if not timetable:
         add_timetable_to_db(parse(find_group_url(group)), group)
-        return get_timetable_from_db(group)
+    return get_timetable_from_db(group)
+
