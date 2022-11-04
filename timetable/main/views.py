@@ -3,10 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, UpdateView
+from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
 
-from .code.searcher import find_group_url
-from .code.parser import parse
+from .code.getter import get_timetable
 from .utils import DataMixin
 from .forms import *
 from .code.exceptions import *
@@ -40,8 +39,7 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
         error_text = None
         table = None
         try:
-            table_url = find_group_url(self.request.user.group)
-            table = parse(table_url)
+            table = get_timetable(self.request.user)
         except ConnectionError as c:
             print(c)
             error_type = 'ConnectionFault'
@@ -57,6 +55,28 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
 
         c_def = self.get_user_context(title='Расписание', table=table, error_type=error_type, error_text=error_text)
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class LessonView(LoginRequiredMixin, DataMixin, DetailView, UpdateView):
+    form_class = NoteUpdateForm
+    context_object_name = 'lesson'
+    model = Lesson
+    template_name = 'main/lesson.html'
+    pk_url_kwarg = 'lesson_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        lesson = [
+            {'title': 'Тип пары', 'field': self.object.type},
+            {'title': 'Дисциплина', 'field': self.object.name},
+            {'title': 'Время пары', 'field': self.object.time},
+        ]
+        c_def = self.get_user_context(title=self.object.name, lesson=lesson)
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def form_valid(self, form):
+        form.save()
+        return redirect(reverse_lazy('timetable'))
 
 
 class LoginUser(DataMixin, LoginView):
