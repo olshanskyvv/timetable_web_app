@@ -17,7 +17,7 @@
             </tr>
         {% for lesson in day.table %}
             <tr>
-                <td rowspan="2">
+                <td rowspan="3">
                     <div class="pair_number">{{ lesson.pair.number }}</div>
                     <div class="pair_time">{{ lesson.pair.time }}</div>
                 </td>
@@ -31,6 +31,13 @@
                 {% for info in lesson.course.other_info %}
                 <div class="info">{{info}}</div>
                 {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Заметки</div>
+                    <div>{{ lesson.pair.note }}</div>
+                    <a href="{% url 'lesson' lesson.pair.pk %}"><button>Изменить</button></a>
                 </td>
             </tr>
         {% endfor %}

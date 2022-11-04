@@ -5,7 +5,9 @@ def get_lesson_from_db(lesson: Lesson):
     lesson_dict = {
         'pair': {
             'number': lesson.number,
-            'time': lesson.time
+            'time': lesson.time,
+            'note': lesson.note,
+            'pk': lesson.pk
         },
         'course': {
             'type': lesson.type,

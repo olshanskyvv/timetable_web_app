@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -41,6 +42,9 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolut_url(self):
+        return reverse('lesson', kwargs={'lesson_id': self.pk})
 
 
 class Info(models.Model):

@@ -40,3 +40,11 @@ class UpdateUserForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'group']
+
+
+class NoteUpdateForm(ModelForm):
+    note = forms.CharField(label='Заметки', required=False, widget=forms.Textarea(attrs={'class': 'form-input'}))
+
+    class Meta:
+        model = Lesson
+        fields = ['note']
