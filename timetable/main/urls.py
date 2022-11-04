@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='home'),
     path('about', views.AboutView.as_view(), name='about'),
     path('timetable', views.TimetableView.as_view(), name='timetable'),
+    path('update', views.update_timetable, name='update'),
     path('lesson/<int:lesson_id>', views.LessonView.as_view(), name='lesson'),
     path('login', views.LoginUser.as_view(), name='login'),
     path('profile', views.ProfileView.as_view(), name='profile'),

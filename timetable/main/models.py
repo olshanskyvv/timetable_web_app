@@ -11,7 +11,6 @@ class Timetable(models.Model):
     group = models.CharField(max_length=10, verbose_name='Номер группы')
     week1 = models.OneToOneField('Week', on_delete=models.CASCADE, related_name='timetable1', verbose_name='Первая неделя')
     week2 = models.OneToOneField('Week', on_delete=models.CASCADE, related_name='timetable2', verbose_name='Вторая неделя')
-    update_time = models.TimeField(auto_now=True)
 
     def __str__(self):
         return self.group
