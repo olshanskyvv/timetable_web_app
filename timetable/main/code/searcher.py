@@ -14,7 +14,7 @@ def find_group_url(group_number: str):
     request = requests.get(URL_TEMPLATE)
     if request.status_code != 200:
         raise exceptions.ConnectionFault('Не удалось выполнить запрос на сайт с расписанием. Повторите позже.')
-    main_soup = bs(request.text, 'lxml')
+    main_soup = bs(request.text, 'html.parser')
     url = main_soup.find('a', text=re.compile(group_number.upper()))
     if url:
         return MAIN_URL + url['href']
