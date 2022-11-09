@@ -1,14 +1,14 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1> {{title}} </h1>
+<h1 style="text-align: center;"> {{title}} </h1>
 
-<form method="post">
+<form style="text-align: center;"  method="post"    >
     {% csrf_token %}
 
-    <div class="form-error">{{ f.non_field_errors }}</div>
 
-    {% for f in form %}
+    <div style="text-align: center;", class="form-error">{{ f.non_field_errors }}</div>
+
     <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
