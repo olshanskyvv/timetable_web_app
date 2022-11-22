@@ -14,16 +14,16 @@ table{
     background-color: grey;
 }
 
+.content{
+
+}
+
 ul.menu{
     list-style: none;
 }
 
 ul.menu li{
     float: left;
-}
-
-ul.menu li.last{
-    float: right;
 }
 
 tr{
