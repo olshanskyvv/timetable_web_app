@@ -54,7 +54,8 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
             error_type = 'error'
             error_text = str(e)
 
-        c_def = self.get_user_context(title='Расписание', table=table, error_type=error_type, error_text=error_text)
+        c_def = self.get_user_context(title='Расписание', table=table, is_elder=self.request.user.is_elder,
+                                      error_type=error_type, error_text=error_text)
         return dict(list(context.items()) + list(c_def.items()))
 
 

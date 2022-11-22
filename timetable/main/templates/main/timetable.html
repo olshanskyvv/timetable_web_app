@@ -17,7 +17,7 @@
             </tr>
         {% for lesson in day.table %}
             <tr>
-                <td rowspan="3">
+                <td rowspan="{% if is_elder %}3{% else %}2{% endif %}">
                     <div class="pair_number">{{ lesson.pair.number }}</div>
                     <div class="pair_time">{{ lesson.pair.time }}</div>
                 </td>
@@ -33,6 +33,7 @@
                 {% endfor %}
                 </td>
             </tr>
+            {% if is_elder %}
             <tr>
                 <td>
                     <div>Заметки</div>
@@ -40,6 +41,7 @@
                     <a href="{% url 'lesson' lesson.pair.pk %}"><button>Изменить</button></a>
                 </td>
             </tr>
+            {% endif %}
         {% endfor %}
 
         {% endfor %}

@@ -5,6 +5,7 @@ from django.urls import reverse
 
 class User(AbstractUser):
     group = models.CharField(max_length=10, verbose_name='Номер группы')
+    is_elder = models.BooleanField(verbose_name='Стороста', default=False)
 
 
 class Timetable(models.Model):
