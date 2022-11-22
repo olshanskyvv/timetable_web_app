@@ -3,11 +3,27 @@
 }
 
 body{
-
+    background-image: url("https://vuzopedia.ru/storage/app/uploads/public/59d/cdc/389/59dcdc3892eb9776480407.jpg");
 }
 
 table{
     border: 1px solid gray;
+}
+
+.header{
+    background-color: grey;
+}
+
+ul.menu{
+    list-style: none;
+}
+
+ul.menu li{
+    float: left;
+}
+
+ul.menu li.last{
+    float: right;
 }
 
 tr{
