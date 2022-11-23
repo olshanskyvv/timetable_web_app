@@ -1,13 +1,10 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1 style="text-align: center;">{{ title }}</h1>
+<h1>{{ title }}</h1>
 
 
-<form style="text-align: center;" method="post">
-    <style class="css/style1">
-
-    </style>
+<form method="post">
     {% csrf_token %}
 
     {% for f in form %}
