@@ -5,9 +5,9 @@
 {% if error_type %}
 <h2 class="error">{{ error_text }}</h2>
 {% else %}
-<div class="timetable" style="vertical-align:top;">
+<div class="timetable">
         {% for week in table %}
-        <table style="display:inline-table;">
+        <table class="timetable">
             <tr>
                 <th class='week_title' colspan="2">Неделя {{ week.number }}</th>
             </tr>
@@ -48,7 +48,7 @@
         </table>
         {% endfor %}
     </div>
-<div>Если расписание не актуально то нажмите <a href="{% url 'update' %}">Обновить</a>.
+<div>Если расписание не актуально то нажмите <a class="update" href="{% url 'update' %}">Обновить</a>.
     Помните, что при обновлении расписания заметки будут сброшены!</div>
 {% endif %}
 

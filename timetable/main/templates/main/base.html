@@ -13,21 +13,36 @@
             crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>{{ title }}</title>
+
+    <title type="text" class=".title1">{{ title }}</title>
 </head>
 <body>
     <header>
-        <ul>
+        <ul class="menu">
         {% for m in menu %}
-            <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+           <li>
+              <button type="button" class="btn btn-primary">
+                  <a href="{% url m.url_name %}">{{ m.title }}</a>
+              </button>
+           </li>
         {% endfor %}
+            <li class="last">
             {% if request.user.is_authenticated %}
-            <li class="last"><a href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
+                <button type="button" class="btn btn-primary">
+                    <span><a href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
+                    |
+                    <a href="{% url 'logout' %}">Выйти</a></span>
+                </button>
             {% else %}
-            <li class="last"><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></li>
+                <button type="button" class="btn btn-primary">
+                    <span><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></span>
+                </button>
             {% endif %}
+            </li>
         </ul>
     </header>
-    {% block content %}{% endblock %}
+    <div class="content">
+        <span class="content">{% block content %}{% endblock %}</span>
+    </div>
 </body>
 </html>
