@@ -59,8 +59,9 @@ header{
 
 div.content{
     background-color: bisque;
-    width: 90%;
-    margin-left: 5%;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 ul.menu{
@@ -89,17 +90,24 @@ div.timetable {
 
 table.timetable {
     display:inline-table;
+    border: 2px solid grey;
+    margin-top: 20px;
+    margin-left: 2.5%;
+    margin-right: 2%;
+    width: 45%;
 }
 
 tr{
-
+    border: 2px solid grey;
 }
 
 th{
+    border: 2px solid grey;
 
 }
 
 td{
+    border: 2px solid grey;
 
 }
 
