@@ -38,7 +38,12 @@ title{
     color: #000;
 }
 span{
- color: #fff;
+    color: black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
 }
 
 body{

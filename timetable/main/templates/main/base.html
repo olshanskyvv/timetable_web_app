@@ -20,18 +20,25 @@
     <div class="header">
         <ul class="menu">
         {% for m in menu %}
-       <button type="button" class="btn btn-primary">
-              <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
-        </button>
+           <li>
+              <button type="button" class="btn btn-primary">
+                  <a href="{% url m.url_name %}">{{ m.title }}</a>
+              </button>
+           </li>
         {% endfor %}
+            <li class="last">
             {% if request.user.is_authenticated %}
-            <li class="last"><a href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
+                <button type="button" class="btn btn-primary2">
+                    <span><a href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
+                    |
+                    <a href="{% url 'logout' %}">Выйти</a></span>
+                </button>
             {% else %}
-            <button type="button" class="btn btn-primary2">
-            <li class="last"><span><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></span></li>
-
-            </button>
+                <button type="button" class="btn btn-primary2">
+                    <span><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></span>
+                </button>
             {% endif %}
+            </li>
         </ul>
 
     </div>
