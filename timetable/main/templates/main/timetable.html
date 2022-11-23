@@ -5,9 +5,9 @@
 {% if error_type %}
 <h2 class="error">{{ error_text }}</h2>
 {% else %}
-<div class="timetable" style="vertical-align:top;">
+<div class="timetable">
         {% for week in table %}
-        <table style="display:inline-table;">
+        <table class="timetable">
             <tr>
                 <th class='week_title' colspan="2">Неделя {{ week.number }}</th>
             </tr>

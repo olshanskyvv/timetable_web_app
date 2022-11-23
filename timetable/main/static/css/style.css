@@ -48,31 +48,54 @@ a {
 
 body{
     background-image: url("https://vuzopedia.ru/storage/app/uploads/public/59d/cdc/389/59dcdc3892eb9776480407.jpg");
-}
-
-table{
-    border: 1px solid gray;
+    margin: 0;
+    padding: 0;
 }
 
 .header{
 	width: 100%;
 	background: #2F4F4F;
 	height: 70px;
+    margin-top: 0;
+    padding: 0;
 }
 
-.content{
-
+div.content{
+    background-color: bisque;
+    width: 90%;
+    margin-left: 5%;
 }
 
 ul.menu{
+    margin-right: 2.5%;
     list-style: none;
+
 }
 
 ul.menu li{
     float: left;
+    margin-right: 10px;
 }
+
+ul.menu li.last{
+    float: right;
+    margin-right: 0;
+}
+
 li.a{
    color: #ffffff;
+}
+
+div.timetable {
+    vertical-align:top;
+}
+
+table.timetable {
+    display:inline-table;
+}
+
+table{
+
 }
 
 tr{
@@ -80,7 +103,7 @@ tr{
 }
 
 th{
-    border: 1px solid grey;
+
 }
 
 td{
