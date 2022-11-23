@@ -17,7 +17,7 @@
     <title type="text" class=".title1">{{ title }}</title>
 </head>
 <body>
-    <div class="header">
+    <header>
         <ul class="menu">
         {% for m in menu %}
            <li>
@@ -28,20 +28,19 @@
         {% endfor %}
             <li class="last">
             {% if request.user.is_authenticated %}
-                <button type="button" class="btn btn-primary2">
+                <button type="button" class="btn btn-primary">
                     <span><a href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
                     |
                     <a href="{% url 'logout' %}">Выйти</a></span>
                 </button>
             {% else %}
-                <button type="button" class="btn btn-primary2">
+                <button type="button" class="btn btn-primary">
                     <span><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a></span>
                 </button>
             {% endif %}
             </li>
         </ul>
-
-    </div>
+    </header>
     <div class="content">
         <span class="content">{% block content %}{% endblock %}</span>
     </div>
