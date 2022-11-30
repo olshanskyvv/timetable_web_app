@@ -33,9 +33,9 @@ class LoginUserForm(AuthenticationForm):
 
 class UpdateUserForm(ModelForm):
     first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    email = forms.CharField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
-    group = forms.CharField(label='Номер группы', validators=[group_is_valid], widget=forms.TextInput(attrs={'class': 'form-input'}))
+    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-input'}), required=False)
+    email = forms.CharField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}), required=False)
+    group = forms.CharField(label='Номер группы', validators=[group_is_valid], widget=forms.TextInput(attrs={'class': 'form-input'}), required=False)
 
     class Meta:
         model = User
