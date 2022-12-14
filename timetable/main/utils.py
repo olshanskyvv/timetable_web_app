@@ -1,6 +1,6 @@
 menu = [
-    {'title': 'Главная', 'url_name': 'home'},
-    {'title': 'О нас', 'url_name': 'about'},
+    # {'title': 'Главная', 'url_name': 'home'},
+    # {'title': 'О нас', 'url_name': 'about'},
     {'title': 'Расписание', 'url_name': 'timetable'},
 ]
 
