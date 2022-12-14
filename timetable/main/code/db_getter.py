@@ -33,9 +33,11 @@ def get_week_from_db(week: Week):
 
 
 def get_timetable_from_db(group: str):
-    table = Timetable.objects.get(group=group)
+    table = Group.objects.get(group=group).week_set.all()
     timetable = [
-        {'table': get_week_from_db(table.week1), 'number': 1},
-        {'table': get_week_from_db(table.week2), 'number': 2},
+        {'table': get_week_from_db(table[0]), 'number': 1},
+        {'table': get_week_from_db(table[1]), 'number': 2},
     ]
     return timetable
+
+

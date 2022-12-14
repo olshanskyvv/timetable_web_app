@@ -61,7 +61,7 @@ class TimetableView(LoginRequiredMixin, DataMixin, TemplateView):
 
 def update_timetable(request):
     user_group = request.user.group
-    Timetable.objects.filter(group=user_group).delete()
+    Group.objects.filter(group=user_group).delete()
     return redirect('timetable')
 
 

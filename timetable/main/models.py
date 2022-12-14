@@ -5,13 +5,11 @@ from django.urls import reverse
 
 class User(AbstractUser):
     group = models.CharField(max_length=10, verbose_name='Номер группы')
-    is_elder = models.BooleanField(verbose_name='Стороста', default=False)
+    is_elder = models.BooleanField(verbose_name='Староста', default=False)
 
 
-class Timetable(models.Model):
+class Group(models.Model):
     group = models.CharField(max_length=10, verbose_name='Номер группы')
-    week1 = models.OneToOneField('Week', on_delete=models.CASCADE, related_name='timetable1', verbose_name='Первая неделя')
-    week2 = models.OneToOneField('Week', on_delete=models.CASCADE, related_name='timetable2', verbose_name='Вторая неделя')
 
     def __str__(self):
         return self.group
@@ -19,6 +17,7 @@ class Timetable(models.Model):
 
 class Week(models.Model):
     number = models.IntegerField(verbose_name='Номер недели')
+    timetable = models.ForeignKey('Group', on_delete=models.CASCADE, verbose_name='Группа')
 
     def __str__(self):
         return 'Неделя ' + str(self.number)

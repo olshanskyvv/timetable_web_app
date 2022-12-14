@@ -32,9 +32,10 @@ def create_day_db(day: dict, week: Week):
         create_lesson_db(lesson, day_db)
 
 
-def create_week_db(week: dict):
+def create_week_db(week: dict, group: Group):
     week_db = Week(
-        number=week['number']
+        number=week['number'],
+        timetable=group
     )
     week_db.save()
     for day in week['table']:
@@ -43,10 +44,10 @@ def create_week_db(week: dict):
 
 
 def add_timetable_to_db(timetable: list, group: str):
-    timetable_db = Timetable(
-        group=group,
-        week1=create_week_db(timetable[0]),
-        week2=create_week_db(timetable[1]),
+    timetable_db = Group(
+        group=group
     )
     timetable_db.save()
+    create_week_db(timetable[0], timetable_db)
+    create_week_db(timetable[1], timetable_db)
     return timetable_db
